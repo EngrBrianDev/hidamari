@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { LanguageSwitcher } from "@/app/components/shared/LanguageSwitcher";
 import { useLanguage } from "@/app/components/shared/LanguageProvider";
-import { HIDAMARI_PHONE_TEL } from "@/app/lib/site-links";
 
 type SiteHeaderProps = {
   active: "home" | "lunch" | "dinner" | "menu" | "access";
@@ -54,12 +53,6 @@ export function SiteHeader({ active }: SiteHeaderProps) {
         </div>
         <div className="flex items-center gap-3 shrink-0">
           <LanguageSwitcher />
-          <a
-            href={HIDAMARI_PHONE_TEL}
-            className="bg-primary text-paper-white px-4 md:px-6 py-2 rounded-xl font-label-md text-label-md active:scale-95 transition-transform duration-200 hover:opacity-90 whitespace-nowrap"
-          >
-            {t("common.bookTable")}
-          </a>
         </div>
       </nav>
     </header>

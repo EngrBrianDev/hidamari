@@ -7,7 +7,6 @@ import { HidamariSpaceCard } from "@/app/components/home/HidamariSpaceCard";
 import { HIDAMARI_GOOGLE_MAPS_URL } from "@/app/lib/site-links";
 import { ContactIcon } from "@/app/components/shared/icons/ContactIcons";
 import { GoogleMapEmbed } from "@/app/components/shared/GoogleMapEmbed";
-import { SideQuickNav } from "@/app/components/shared/SideQuickNav";
 import { SiteFooter } from "@/app/components/shared/SiteFooter";
 import { SiteHeader } from "@/app/components/shared/SiteHeader";
 import { useLanguage } from "@/app/components/shared/LanguageProvider";
@@ -38,8 +37,6 @@ export function HomePage() {
   return (
     <>
       <SiteHeader active="home" />
-
-      <SideQuickNav />
 
       <main className="pt-20 bg-background text-on-background overflow-x-hidden">
 
@@ -160,7 +157,7 @@ export function HomePage() {
               >
                 <Image
                   src="/landingPhotos/IMG_3224.JPG"
-                  alt="Evening dining with chicken nanban and tartar sauce at Hidamari"
+                  alt={messages.home.alts.eveningDining}
                   fill
                   className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
                 />
@@ -239,12 +236,6 @@ export function HomePage() {
 
       <SiteFooter />
 
-      {/* FAB mobile */}
-      <div className="fixed bottom-8 right-8 z-50 md:hidden">
-        <button className="bg-primary text-paper-white w-14 h-14 rounded-full sunlit-shadow flex items-center justify-center active:scale-90 transition-transform">
-          <span className="material-symbols-outlined">calendar_month</span>
-        </button>
-      </div>
     </>
   );
 }

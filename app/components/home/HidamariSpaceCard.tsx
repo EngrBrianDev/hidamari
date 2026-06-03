@@ -35,7 +35,7 @@ export function HidamariSpaceCard() {
           <span className="text-tertiary font-label-md text-label-md uppercase tracking-widest">
             {t("hidamariSpace.atmosphere")}
           </span>
-          <h3 className="text-primary font-headline-lg text-headline-lg leading-tight">
+          <h3 className="text-primary font-headline-lg leading-tight" style={{ fontSize: "clamp(22px, 3vw, 32px)" }}>
             {t("hidamariSpace.title")}
           </h3>
           <p className="text-on-surface-variant font-body-md text-body-md leading-relaxed">

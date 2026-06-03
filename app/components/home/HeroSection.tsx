@@ -24,9 +24,8 @@ export function HeroSection() {
 
       <div className="relative z-10 flex h-full flex-col justify-center items-center px-6 py-8 text-center">
         <div className="max-w-2xl space-y-6 md:space-y-8">
-          <span className="inline-flex h-8 items-center justify-center gap-2 rounded-full border border-paper-white/25 bg-paper-white/15 px-4 font-label-md text-[11px] leading-none tracking-widest text-paper-white uppercase backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary-fixed" aria-hidden />
-            <span className="leading-none">{t("hero.badge")}</span>
+          <span className="inline-flex h-8 items-center rounded-full border border-paper-white/25 bg-paper-white/15 px-5 font-label-md text-[11px] leading-none tracking-widest text-paper-white uppercase backdrop-blur-sm">
+            <span className="leading-none pl-[0.1em]">{t("hero.badge")}</span>
           </span>
 
           <h1

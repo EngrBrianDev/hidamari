@@ -158,12 +158,12 @@ export function AccessPage() {
               </div>
             </div>
             <div className="flex flex-wrap gap-4">
-              <a
-                href={HIDAMARI_PHONE_TEL}
+              <Link
+                href="/menu#bento"
                 className="inline-flex bg-primary text-paper-white px-8 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all active:scale-95"
               >
-                {t("access.orderNow")}
-              </a>
+                {t("access.viewBentoMenu")}
+              </Link>
               <Link
                 href="/menu#bento"
                 className="inline-flex border border-primary/25 text-primary px-8 py-3 rounded-xl font-label-md text-label-md hover:bg-paper-white transition-all"
@@ -182,12 +182,12 @@ export function AccessPage() {
             <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
               {t("access.membershipBody")}
             </p>
-            <a
-              href={HIDAMARI_PHONE_TEL}
+            <Link
+              href="/menu"
               className="inline-flex bg-primary text-paper-white px-8 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all active:scale-95"
             >
-              {t("access.contactUs")}
-            </a>
+              {t("common.nav.menu")}
+            </Link>
           </div>
         </div>
 

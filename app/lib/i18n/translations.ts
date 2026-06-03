@@ -116,6 +116,7 @@ export const translations = {
     lunch: {
       reserve: "Reserve",
       bookTable: "Book a Table",
+      heroImageAlt: "Hidamari Lunch",
       heroTitle: "LUNCH",
       heroTagline: "Experience Tactile Minimalism and Authentic Flavors",
       serviceUpdate: "Service Update",
@@ -247,6 +248,7 @@ export const translations = {
       mapRestaurant: "Hidamari Japanese Restaurant",
       mapBuilding: "Creekside Building Penthouse",
       openMaps: "Open in Maps",
+      drinkTags: ["Sapporo", "Kirin", "Draft"],
       alts: {
         dinnerArch: "Dinner",
         drinksArch: "Drinks",
@@ -450,6 +452,7 @@ export const translations = {
     lunch: {
       reserve: "ご予約",
       bookTable: "ご予約",
+      heroImageAlt: "ひだまり ランチ",
       heroTitle: "ランチ",
       heroTagline: "素材の味わいと、日本の温かさを感じるランチ",
       serviceUpdate: "営業のご案内",
@@ -580,6 +583,7 @@ export const translations = {
       mapRestaurant: "ひだまり Japanese Restaurant",
       mapBuilding: "クリークサイドビル ペントハウス",
       openMaps: "地図で開く",
+      drinkTags: ["サッポロ", "キリン", "生ビール"],
       alts: {
         dinnerArch: "ディナー",
         drinksArch: "ドリンク",

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/app/components/shared/LanguageProvider";
-import { HIDAMARI_PHONE_TEL } from "@/app/lib/site-links";
+
 
 const footerLinkClass =
   "font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors";
@@ -84,9 +84,9 @@ export function SiteFooter() {
         <p className="font-caption text-caption text-on-surface-variant opacity-70">
           {t("common.copyright")}
         </p>
-        <a href={HIDAMARI_PHONE_TEL} className={`${footerLinkClass} font-caption text-caption`}>
-          {t("common.bookInquire")}
-        </a>
+        <Link href="/menu" className={`${footerLinkClass} font-caption text-caption`}>
+          {t("common.nav.menu")}
+        </Link>
       </div>
     </footer>
   );

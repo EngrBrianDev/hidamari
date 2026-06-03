@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/app/components/shared/LanguageProvider";
-import { HIDAMARI_PHONE_TEL } from "@/app/lib/site-links";
+
 import { BentoIcon, CalendarIcon } from "@/app/components/shared/icons/SideNavIcons";
 
 export function SideQuickNav() {
@@ -14,15 +14,15 @@ export function SideQuickNav() {
       aria-label={t("common.quickActions")}
     >
       <Link
-        href={HIDAMARI_PHONE_TEL}
+        href="/menu"
         className="group flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-xl hover:bg-paper-white/10 transition-colors"
-        title={t("common.bookTable")}
+        title={t("common.nav.menu")}
       >
         <div className="w-11 h-11 rounded-full bg-secondary-container/35 flex items-center justify-center text-primary group-hover:bg-secondary-container transition-colors">
           <CalendarIcon className="w-5 h-5" />
         </div>
         <span className="font-label-md text-paper-white uppercase tracking-widest text-[10px]">
-          {t("common.book")}
+          {t("common.nav.menu")}
         </span>
       </Link>
 

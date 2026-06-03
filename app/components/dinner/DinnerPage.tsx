@@ -8,6 +8,22 @@ import { SiteFooter } from "@/app/components/shared/SiteFooter";
 import { useLanguage } from "@/app/components/shared/LanguageProvider";
 import { HIDAMARI_GOOGLE_MAPS_URL, HIDAMARI_PHONE_DISPLAY } from "@/app/lib/site-links";
 
+const assetBase = "/stitch_hidamari_inspired_portfolio";
+
+const images = {
+  dinner:
+    `${assetBase}/image_from_https_hidamari_restaurant.com_images_dinner_btn.png/screen.png`,
+  drink:
+    `${assetBase}/image_from_https_hidamari_restaurant.com_images_drink_btn.png/screen.png`,
+  interior:
+    `${assetBase}/image_from_https_hidamari_restaurant.com_images_photo003.png/screen.png`,
+  table:
+    `${assetBase}/image_from_https_hidamari_restaurant.com_images_photo004.png/screen.png`,
+  logo:
+    `${assetBase}/image_from_https_hidamari_restaurant.com_images_toplogo.png/screen.png`,
+};
+
+
 export function DinnerPage() {
   const { t, messages } = useLanguage();
   const archLeftRef = useRef<HTMLDivElement>(null);
@@ -72,34 +88,6 @@ export function DinnerPage() {
   return (
     <>
       <SiteHeader active="dinner" />
-
-      {/* ── Fixed right sidebar ── */}
-      <aside className="hidden lg:flex fixed right-0 top-1/2 -translate-y-1/2 flex-col gap-4 p-4 z-40 bg-surface-container-low rounded-l-xl"
-        style={{ boxShadow: "4px 20px 20px rgba(166,124,65,0.08)" }}
-      >
-        <div className="flex flex-col items-center mb-4">
-          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-paper-white mb-1">
-            <i className="fi fi-sr-utensils text-[18px]" aria-hidden="true" />
-          </div>
-          <p className="font-label-md text-primary uppercase tracking-widest" style={{ fontSize: "9px" }}>
-            {t("dinner.reservations")}
-          </p>
-        </div>
-        <Link
-          href="/access"
-          className="flex flex-col items-center gap-1 p-3 bg-secondary-container/30 text-secondary rounded-lg hover:-translate-x-1 transition-transform"
-        >
-          <i className="fi fi-tr-calendar-day text-[22px]" aria-hidden="true" />
-          <span className="font-label-md" style={{ fontSize: "9px" }}>{t("dinner.bookTable")}</span>
-        </Link>
-        <Link
-          href="/lunch"
-          className="flex flex-col items-center gap-1 p-3 text-on-surface-variant hover:bg-primary/5 hover:-translate-x-1 transition-transform rounded-lg"
-        >
-          <i className="fi fi-sr-clock text-[21px]" aria-hidden="true" />
-          <span className="font-label-md" style={{ fontSize: "9px" }}>{t("dinner.lunchHours")}</span>
-        </Link>
-      </aside>
 
       <main className="pt-20 bg-surface overflow-x-hidden">
 
@@ -227,7 +215,7 @@ export function DinnerPage() {
                     {t("dinner.japaneseDraftBody")}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {["Sapporo", "Kirin", "Draft"].map((tag) => (
+                    {messages.dinner.drinkTags.map((tag) => (
                       <span
                         key={tag}
                         className="px-2 py-1 bg-secondary-container/20 text-on-secondary-container rounded font-label-md uppercase"
@@ -391,7 +379,6 @@ export function DinnerPage() {
 
           </div>
         </section>
-
       </main>
       <SiteFooter />
     </>

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { SiteHeader } from "@/app/components/shared/SiteHeader";
 import { SiteFooter } from "@/app/components/shared/SiteFooter";
 import { useLanguage } from "@/app/components/shared/LanguageProvider";
-import { HIDAMARI_PHONE_TEL } from "@/app/lib/site-links";
 
 const LUNCH_SLIDE_IMAGES = [
   "/lunch/IMG_3891.JPG",
@@ -106,35 +105,13 @@ export function LunchPage() {
     <>
       <SiteHeader active="lunch" />
 
-      {/* ── Fixed right sidebar ── */}
-      <aside className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden md:flex w-24 flex-col items-center gap-8 rounded-l-2xl border-l border-y border-primary/5 bg-surface-container-low px-4 py-7 sunlit-shadow">
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-variant/70 text-primary">
-            <i className="fi fi-sr-utensils text-[24px]" aria-hidden="true" />
-          </div>
-          <span
-            className="font-label-md text-primary uppercase tracking-[0.18em]"
-            style={{ fontSize: "11px", lineHeight: "14px" }}
-          >
-            {t("lunch.reserve")}
-          </span>
-        </div>
-        <a
-          href={HIDAMARI_PHONE_TEL}
-          className="flex h-14 w-14 items-center justify-center rounded-xl text-secondary transition-all hover:bg-primary/5"
-          title={t("lunch.bookTable")}
-        >
-          <i className="fi fi-tr-calendar-day text-[28px]" aria-hidden="true" />
-        </a>
-      </aside>
-
       <main className="pt-20">
 
         {/* ── Hero ── */}
         <section className="relative w-full overflow-hidden" style={{ height: "60vh" }}>
           <Image
             src="/lunch/IMG_4106.JPG"
-            alt="Hidamari Lunch"
+            alt={t("lunch.heroImageAlt")}
             fill
             className="object-cover"
             priority
