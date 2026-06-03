@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HIDAMARI_PHONE_DISPLAY, HIDAMARI_PHONE_TEL } from "@/app/lib/site-links";
 import { SiteFooter } from "@/app/components/shared/SiteFooter";
+import {
+  LocationIcon,
+  ScheduleIcon,
+} from "@/app/components/shared/icons/ContactIcons";
+import { GoogleMapEmbed } from "@/app/components/shared/GoogleMapEmbed";
 import { SiteHeader } from "@/app/components/shared/SiteHeader";
 
 export function AccessPage() {
@@ -27,16 +33,17 @@ export function AccessPage() {
         <div className="max-w-6xl mx-auto px-6 mb-12">
           <div className="relative h-[340px] md:h-[440px] rounded-2xl overflow-hidden sunlit-shadow">
             <Image
-              src="/stitch_hidamari_inspired_portfolio/image_from_https_hidamari_restaurant.com_images_photo004.png/screen.png"
-              alt="Restaurant interior"
+              src="/landingPhotos/IMG_2957.JPG"
+              alt="Hidamari Restaurant sign on warm wood interior wall with greenery and lights"
               fill
-              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1152px"
+              className="object-cover object-[55%_center]"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-black/35 to-transparent" />
             <div className="absolute bottom-6 left-6 bg-paper-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
               <span className="font-label-md text-label-md text-primary">
-                Our Serene Space
+                Hidamari Restaurant
               </span>
             </div>
           </div>
@@ -47,9 +54,7 @@ export function AccessPage() {
           {/* Location */}
           <div className="bg-paper-white rounded-2xl sunlit-shadow p-8 space-y-4">
             <div className="flex items-center gap-2 mb-2">
-              <span className="material-symbols-outlined text-primary">
-                location_on
-              </span>
+              <LocationIcon className="w-6 h-6 text-primary" />
               <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-primary">
                 Location
               </h2>
@@ -63,18 +68,19 @@ export function AccessPage() {
               <span className="font-label-md text-label-md text-tertiary uppercase tracking-wider block mb-1">
                 Phone
               </span>
-              <p className="font-headline-lg-mobile text-headline-lg-mobile text-primary">
-                02-8659-6120
-              </p>
+              <a
+                href={HIDAMARI_PHONE_TEL}
+                className="font-headline-lg-mobile text-headline-lg-mobile text-primary hover:underline"
+              >
+                {HIDAMARI_PHONE_DISPLAY}
+              </a>
             </div>
           </div>
 
           {/* Opening Hours */}
           <div className="bg-paper-white rounded-2xl sunlit-shadow p-8 space-y-4">
             <div className="flex items-center gap-2 mb-2">
-              <span className="material-symbols-outlined text-primary">
-                schedule
-              </span>
+              <ScheduleIcon className="w-6 h-6 text-primary" />
               <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-primary">
                 Opening Hours
               </h2>
@@ -108,36 +114,10 @@ export function AccessPage() {
             How to Find Us
           </h2>
 
-          {/* Map placeholder */}
-          <div className="relative h-[300px] bg-surface-container rounded-2xl overflow-hidden sunlit-shadow flex items-center justify-center mb-8">
-            <Image
-              src="/stitch_hidamari_inspired_portfolio/image_from_https_hidamari_restaurant.com_images_photo003.png/screen.png"
-              alt="Map area"
-              fill
-              className="object-cover opacity-15"
-            />
-            <div className="relative z-10 text-center">
-              <span
-                className="material-symbols-outlined text-primary"
-                style={{ fontSize: "52px" }}
-              >
-                map
-              </span>
-              <p className="font-body-md text-body-md text-on-surface-variant mt-2">
-                Creekside Building · Legaspi Village, Makati
-              </p>
-              <div className="w-3 h-3 bg-warm-accent rounded-full mx-auto mt-3" />
-            </div>
-            {/* Zoom controls */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-1">
-              <button className="w-8 h-8 bg-paper-white rounded sunlit-shadow font-bold text-primary flex items-center justify-center hover:bg-surface-container transition-colors">
-                +
-              </button>
-              <button className="w-8 h-8 bg-paper-white rounded sunlit-shadow font-bold text-primary flex items-center justify-center hover:bg-surface-container transition-colors">
-                −
-              </button>
-            </div>
-          </div>
+          <GoogleMapEmbed
+            className="mb-8 border-0"
+            heightClassName="h-[300px]"
+          />
 
           {/* Directions */}
           <ul className="space-y-4">
@@ -159,7 +139,7 @@ export function AccessPage() {
         </div>
 
         {/* ── Bento Orders ── */}
-        <div className="max-w-6xl mx-auto px-6">
+        <div id="bento" className="max-w-6xl mx-auto px-6 mb-12 scroll-mt-28">
           <div className="bg-surface-container-low rounded-2xl p-8 sunlit-shadow">
             <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">
               Bento Orders
@@ -186,9 +166,40 @@ export function AccessPage() {
                 </p>
               </div>
             </div>
-            <button className="bg-primary text-paper-white px-8 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all active:scale-95">
-              Order Now
-            </button>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href={HIDAMARI_PHONE_TEL}
+                className="inline-flex bg-primary text-paper-white px-8 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all active:scale-95"
+              >
+                Order Now
+              </a>
+              <Link
+                href="/menu#bento"
+                className="inline-flex border border-primary/25 text-primary px-8 py-3 rounded-xl font-label-md text-label-md hover:bg-paper-white transition-all"
+              >
+                View Bento Menu
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Membership Bar ── */}
+        <div id="membership-bar" className="max-w-6xl mx-auto px-6 scroll-mt-28">
+          <div className="bg-paper-white rounded-2xl p-8 sunlit-shadow space-y-4">
+            <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-primary">
+              Membership Hidamari BAR
+            </h2>
+            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Our affiliated members-only bar features counter seating and two
+              private karaoke rooms. For reservations and membership details,
+              please contact the restaurant by phone.
+            </p>
+            <a
+              href={HIDAMARI_PHONE_TEL}
+              className="inline-flex bg-primary text-paper-white px-8 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all active:scale-95"
+            >
+              Contact Us
+            </a>
           </div>
         </div>
 

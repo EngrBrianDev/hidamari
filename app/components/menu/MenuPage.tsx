@@ -1737,7 +1737,7 @@ export function MenuPage() {
     <>
       <SiteHeader active="menu" />
 
-      <main className="pt-20 bg-background">
+      <main className="pt-[9.5rem] bg-background">
 
         {/* ── Hero ── */}
         <section className="relative h-[40vh] min-h-[280px] overflow-hidden flex items-end">
@@ -1805,7 +1805,7 @@ export function MenuPage() {
 
         {/* ── Menu Sections ── */}
         <div className="max-w-5xl mx-auto px-6 md:px-margin-desktop">
-          {sections.map((section, sIdx) => (
+          {sections.map((section) => (
             <section
               key={section.id}
               id={section.id}
@@ -1871,7 +1871,7 @@ export function MenuPage() {
               )}
 
               {/* Categories */}
-              {section.categories.map((cat, cIdx) => {
+              {section.categories.map((cat) => {
                 const hideCategoryHeading = section.id === "appetizers" && cat.name === "Appetizers";
 
                 return (
