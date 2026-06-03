@@ -509,7 +509,7 @@ export function MenuPage() {
 
         {/* ── Menu Sections ── */}
         <div className="max-w-5xl mx-auto px-6 md:px-margin-desktop">
-          {sections.map((section, sIdx) => (
+          {sections.map((section) => (
             <section
               key={section.id}
               id={section.id}
@@ -576,7 +576,7 @@ export function MenuPage() {
               )}
 
               {/* Categories */}
-              {section.categories.map((cat, cIdx) => (
+              {section.categories.map((cat) => (
                 <div key={cat.name} className={`mb-12 reveal-on-scroll`}>
                   {/* Category label */}
                   <div className="flex items-center gap-4 mb-6">

@@ -179,7 +179,7 @@ export function LunchPage() {
       <aside className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden md:flex w-24 flex-col items-center gap-8 rounded-l-2xl border-l border-y border-primary/5 bg-surface-container-low px-4 py-7 sunlit-shadow">
         <div className="flex flex-col items-center gap-2">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-variant/70 text-primary">
-            <i className="fi fi-sr-utensils text-[25px]" aria-hidden="true" />
+            <i className="fi fi-sr-utensils text-[24px]" aria-hidden="true" />
           </div>
           <span
             className="font-label-md text-primary uppercase tracking-[0.18em]"
@@ -192,7 +192,7 @@ export function LunchPage() {
           className="flex h-14 w-14 items-center justify-center rounded-xl text-secondary transition-all hover:bg-primary/5"
           title="Book a Table"
         >
-          <i className="fi fi-tr-calendar-day text-[29px]" aria-hidden="true" />
+          <i className="fi fi-tr-calendar-day text-[28px]" aria-hidden="true" />
         </button>
         
       </aside>
@@ -263,14 +263,19 @@ export function LunchPage() {
             {/* Large Carousel – col-span-8 */}
             <div className="md:col-span-8">
               <div className="relative overflow-hidden rounded-xl sunlit-shadow h-[500px]">
-                <Image
-                  key={currentHighlight.src}
-                  src={currentHighlight.src}
-                  alt={currentHighlight.title}
-                  fill
-                  sizes="(min-width: 768px) 66vw, 100vw"
-                  className="object-cover transition-all duration-700 hover:scale-105"
-                />
+                {lunchHighlights.map((item, index) => (
+                  <Image
+                    key={item.src}
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    sizes="(min-width: 768px) 66vw, 100vw"
+                    className={`object-cover transition-opacity duration-[1400ms] ease-in-out ${
+                      activeHighlight === index ? "opacity-100" : "opacity-0"
+                    }`}
+                    loading="eager"
+                  />
+                ))}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink-black/70 via-ink-black/20 to-transparent" />
 
                 {/* Top bar: label + nav buttons */}
@@ -288,7 +293,7 @@ export function LunchPage() {
                       className="flex h-10 w-10 items-center justify-center rounded-full bg-paper-white/90 text-primary transition hover:bg-paper-white active:scale-95"
                       aria-label="Previous lunch highlight"
                     >
-                      <i className="fi fi-rr-angle-small-left text-[20px]" aria-hidden="true" />
+                      <i className="fi fi-rr-angle-left text-[18px]" aria-hidden="true" />
                     </button>
                     <button
                       type="button"
@@ -296,7 +301,7 @@ export function LunchPage() {
                       className="flex h-10 w-10 items-center justify-center rounded-full bg-paper-white/90 text-primary transition hover:bg-paper-white active:scale-95"
                       aria-label="Next lunch highlight"
                     >
-                      <i className="fi fi-rr-angle-small-right text-[20px]" aria-hidden="true" />
+                      <i className="fi fi-rr-angle-right text-[18px]" aria-hidden="true" />
                     </button>
                   </div>
                 </div>
@@ -345,7 +350,7 @@ export function LunchPage() {
             {/* Lunch details card - col-span-4 */}
             <div className="md:col-span-4 flex flex-col">
               <div className="bg-primary-container text-paper-white px-8 py-10 sm:px-10 md:h-[500px] md:px-10 md:py-12 rounded-xl sunlit-shadow flex flex-col justify-center">
-                <i className="fi fi-sr-utensils mb-8 text-[38px]" aria-hidden="true" />
+                <i className="fi fi-sr-utensils mb-8 text-[40px]" aria-hidden="true" />
                 <h3 className="font-headline-lg mb-5 text-[32px] leading-[38px] font-semibold">
                   {currentHighlight.title}
                 </h3>
