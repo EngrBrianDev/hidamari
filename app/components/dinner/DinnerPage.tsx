@@ -4,6 +4,12 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/app/components/shared/SiteHeader";
+import {
+  CallIcon,
+  LocationIcon,
+  ScheduleIcon,
+} from "@/app/components/shared/icons/ContactIcons";
+import { GoogleMapEmbed } from "@/app/components/shared/GoogleMapEmbed";
 import { SiteFooter } from "@/app/components/shared/SiteFooter";
 
 export function DinnerPage() {
@@ -119,7 +125,7 @@ export function DinnerPage() {
                 Indulge in our artisanal Japanese dishes under the soft glow of dusk.
               </p>
               <div className="flex items-center gap-2 text-primary justify-center md:justify-start">
-                <span className="material-symbols-outlined">schedule</span>
+                <ScheduleIcon className="w-5 h-5" />
                 <span className="font-body-md text-body-md">17:00 – 24:00 Daily</span>
               </div>
             </div>
@@ -329,12 +335,7 @@ export function DinnerPage() {
               <div className="space-y-8">
 
                 <div className="flex gap-4">
-                  <span
-                    className="material-symbols-outlined text-primary mt-0.5 shrink-0"
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                  >
-                    location_on
-                  </span>
+                  <LocationIcon className="w-6 h-6 text-primary mt-0.5 shrink-0" />
                   <div>
                     <h4 className="font-label-md text-label-md text-primary uppercase tracking-wider mb-2">
                       Location
@@ -350,12 +351,7 @@ export function DinnerPage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <span
-                    className="material-symbols-outlined text-primary shrink-0"
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                  >
-                    call
-                  </span>
+                  <CallIcon className="w-6 h-6 text-primary shrink-0" />
                   <div>
                     <h4 className="font-label-md text-label-md text-primary uppercase tracking-wider mb-2">
                       Phone
@@ -386,34 +382,10 @@ export function DinnerPage() {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="w-full md:w-1/2 rounded-xl overflow-hidden sunlit-shadow h-[400px]" data-reveal>
-              <div className="relative w-full h-full bg-surface-container flex items-center justify-center">
-                <Image
-                  src="/stitch_hidamari_inspired_portfolio/image_from_https_hidamari_restaurant.com_images_photo004.png/screen.png"
-                  alt="Map area"
-                  fill
-                  className="object-cover grayscale opacity-30"
-                />
-                <div className="relative z-10 text-center p-8 bg-paper-white/90 backdrop-blur-sm rounded-xl sunlit-shadow max-w-xs">
-                  <span
-                    className="material-symbols-outlined text-primary block mb-2"
-                    style={{ fontSize: "40px" }}
-                  >
-                    restaurant
-                  </span>
-                  <h5 className="font-body-md font-bold text-primary mb-1">
-                    Hidamari Japanese Restaurant
-                  </h5>
-                  <p className="font-caption text-caption text-on-surface-variant">
-                    Creekside Building Penthouse
-                  </p>
-                  <button className="mt-4 font-body-md text-primary font-bold border-b border-primary pb-1 hover:opacity-70 transition-opacity">
-                    Open in Maps
-                  </button>
-                </div>
-              </div>
-            </div>
+            <GoogleMapEmbed
+              className="w-full md:w-1/2"
+              heightClassName="h-[400px]"
+            />
 
           </div>
         </section>
