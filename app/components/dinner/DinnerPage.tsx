@@ -379,6 +379,7 @@ export function DinnerPage() {
 
           </div>
         </section>
+
       </main>
       <SiteFooter />
     </>
