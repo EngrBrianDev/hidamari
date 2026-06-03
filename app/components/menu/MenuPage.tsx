@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/app/components/shared/SiteHeader";
 import { SiteFooter } from "@/app/components/shared/SiteFooter";
+import { useLanguage } from "@/app/components/shared/LanguageProvider";
+import { menuItemDescJa } from "@/app/lib/i18n/menu-item-desc-ja";
+import type { Locale } from "@/app/lib/i18n/types";
 
 /* ─── Menu Data ─────────────────────────────────────────────── */
 
@@ -1682,7 +1685,24 @@ const sections: Section[] = [
 
 /* ─── Component ─────────────────────────────────────────────── */
 
+type MenuScheduleId = "lunch" | "dinner" | "drinks" | "bento";
+
+function categoryNote(
+  locale: Locale,
+  note: string | undefined,
+  teishoku: string,
+  hotPot: string
+): string | undefined {
+  if (!note) return undefined;
+  if (locale === "ja") {
+    if (note.includes("2 persons")) return hotPot;
+    if (note.includes("steamed rice")) return teishoku;
+  }
+  return note;
+}
+
 export function MenuPage() {
+  const { locale, t, messages } = useLanguage();
   const [activeTab, setActiveTab] = useState("lunch");
   const tabBarRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -1759,17 +1779,17 @@ export function MenuPage() {
                 className="object-contain"
               />
             </div>
-            <span className="font-label-md text-label-md text-paper-white/70 uppercase tracking-[0.3em] block mb-2">
-              ひだまりレストラン
+            <span className="font-label-md text-label-md text-paper-white/70 uppercase tracking-[0.3em] pl-[0.3em] block mb-2">
+              {t("menu.heroBrand")}
             </span>
             <h1
               className="font-headline-xl text-primary"
               style={{ fontSize: "64px", lineHeight: 1 }}
             >
-              MENU
+              {t("menu.heroTitle")}
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant mt-2">
-              Lunch · Dinner · Drinks · Bento
+              {t("menu.heroSubtitle")}
             </p>
           </div>
         </section>
@@ -1791,12 +1811,12 @@ export function MenuPage() {
                     : "border-transparent text-on-surface-variant hover:text-primary hover:border-primary/30"
                 }`}
               >
-                <span>{label}</span>
+                <span>{locale === "ja" ? jp : label}</span>
                 <span
                   className="font-caption opacity-60"
                   style={{ fontSize: "10px", fontFamily: "serif" }}
                 >
-                  {jp}
+                  {locale === "ja" ? label : jp}
                 </span>
               </button>
             ))}
@@ -1825,11 +1845,11 @@ export function MenuPage() {
                     className="font-headline-xl text-primary -mt-3"
                     style={{ fontSize: "44px", lineHeight: "52px" }}
                   >
-                    {section.label}
+                    {locale === "ja" ? section.jp : section.label}
                   </h2>
                   <p className="font-body-md text-body-md text-on-surface-variant mt-2 flex items-center gap-2">
                     <span className="material-symbols-outlined text-tertiary text-base">schedule</span>
-                    {section.schedule}
+                    {messages.menu.schedules[section.id as MenuScheduleId]}
                   </p>
                 </div>
                 {/* Section photo thumbnail */}
@@ -1851,9 +1871,7 @@ export function MenuPage() {
                   <div>
                     <p className="font-label-md text-label-md text-secondary mb-1">How to Order Bento:</p>
                     <p className="font-body-md text-body-md text-on-surface-variant">
-                      Please place your order by phone at{" "}
-                      <strong className="text-primary">02-8659-6120</strong> during ordering hours.
-                      Pick-up is available at the restaurant entrance.
+                      {t("menu.howOrderBentoBody")}
                     </p>
                   </div>
                 </div>
@@ -1863,9 +1881,8 @@ export function MenuPage() {
               {section.id === "lunch" && (
                 <div className="mb-10 bg-warm-accent/8 border border-warm-accent/20 rounded-xl p-5 flex items-start gap-3 reveal-on-scroll">
                   <p className="font-body-md text-body-md text-on-surface-variant">
-                    <strong className="text-warm-accent">Notice:</strong> Weekday lunch is temporarily
-                    suspended from May 16. Lunch is available on{" "}
-                    <strong>weekends and public holidays only</strong>.
+                    <strong className="text-warm-accent">{t("menu.lunchNotice")}</strong>{" "}
+                    {t("menu.lunchNoticeBody")}
                   </p>
                 </div>
               )}
@@ -1959,25 +1976,23 @@ export function MenuPage() {
 
             <div className="bg-primary-container rounded-2xl p-8 text-paper-white">
               <span className="material-symbols-outlined text-3xl mb-3 block">liquor</span>
-              <h3 className="font-headline-lg-mobile text-headline-lg-mobile mb-2">Bottle Keep</h3>
+              <h3 className="font-headline-lg-mobile text-headline-lg-mobile mb-2">{t("menu.bottleKeep")}</h3>
               <p className="font-body-md text-body-md opacity-80 leading-relaxed">
-                Store your favourite bottle with us for your next visit. Ask our staff for details
-                on our bottle-keep service — available for whiskey, shochu, and wine.
+                {t("menu.bottleKeepBody")}
               </p>
             </div>
 
             <div className="bg-secondary rounded-2xl p-8 text-paper-white">
               <span className="material-symbols-outlined text-3xl mb-3 block">groups</span>
-              <h3 className="font-headline-lg-mobile text-headline-lg-mobile mb-2">Private Dining</h3>
+              <h3 className="font-headline-lg-mobile text-headline-lg-mobile mb-2">{t("menu.privateDining")}</h3>
               <p className="font-body-md text-body-md opacity-80 leading-relaxed mb-4">
-                Private rooms available for 8–10 and 16–18 guests. Full restaurant buyout
-                accommodates up to 65. Inquire for custom menus and packages.
+                {t("menu.privateDiningBody")}
               </p>
               <Link
                 href="/access"
                 className="inline-flex items-center gap-2 bg-paper-white text-secondary px-5 py-2.5 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all"
               >
-                Enquire Now
+                {t("menu.enquireNow")}
                 <span className="material-symbols-outlined text-base">arrow_forward</span>
               </Link>
             </div>
@@ -1991,7 +2006,7 @@ export function MenuPage() {
             <div className="flex items-center gap-3">
               <span className="material-symbols-outlined text-primary">credit_card</span>
               <span className="font-label-md text-label-md text-on-surface-variant">
-                Cards Accepted
+                {t("menu.cardsAccepted")}
               </span>
             </div>
             <div className="flex items-center gap-4">
@@ -2005,9 +2020,7 @@ export function MenuPage() {
               ))}
             </div>
             <p className="font-body-md text-body-md text-on-surface-variant text-center md:text-right">
-              Reservations via phone or in-person.
-              <br />
-              <strong className="text-primary">02-8659-6120</strong>
+              {t("menu.reservationsPhone")}
             </p>
           </div>
         </section>
