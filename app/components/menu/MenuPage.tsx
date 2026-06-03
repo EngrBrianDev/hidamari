@@ -1871,7 +1871,7 @@ export function MenuPage() {
               )}
 
               {/* Categories */}
-              {section.categories.map((cat) => {
+              {section.categories.map((cat, cIdx) => {
                 const hideCategoryHeading = section.id === "appetizers" && cat.name === "Appetizers";
 
                 return (
