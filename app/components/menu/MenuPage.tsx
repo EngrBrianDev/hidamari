@@ -1722,8 +1722,24 @@ function categoryNote(
 export function MenuPage() {
   const { locale, t, messages } = useLanguage();
   const [activeTab, setActiveTab] = useState("lunch");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const tabBarRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  // Search filter logic
+  const filteredSections = searchQuery.trim() === "" ? sections : sections.map((section) => ({
+    ...section,
+    categories: section.categories.map((category) => ({
+      ...category,
+      items: category.items.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.jp.includes(searchQuery) ||
+          item.desc.toLowerCase().includes(searchQuery.toLowerCase())
+      ),
+    })).filter((cat) => cat.items.length > 0),
+  })).filter((sec) => sec.categories.length > 0);
 
   useEffect(() => {
     // Scroll-spy: update active tab as sections scroll into view
@@ -1743,7 +1759,12 @@ export function MenuPage() {
       if (el) io.observe(el);
     });
 
-    // Reveal-on-scroll
+    return () => {
+      io.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
     const revealIO = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
@@ -1751,13 +1772,17 @@ export function MenuPage() {
         }),
       { threshold: 0.06, rootMargin: "0px 0px -40px 0px" }
     );
-    document.querySelectorAll(".reveal-on-scroll").forEach((el) => revealIO.observe(el));
+    document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add("revealed");
+      }
+      revealIO.observe(el);
+    });
 
     return () => {
-      io.disconnect();
       revealIO.disconnect();
     };
-  }, []);
+  }, [searchQuery]);
 
   
 
@@ -1769,6 +1794,13 @@ export function MenuPage() {
     const top = el.getBoundingClientRect().top + window.scrollY - navH - tabH - 16;
     window.scrollTo({ top, behavior: "smooth" });
     setActiveTab(id);
+  };
+
+  const toggleSearch = () => {
+    setSearchOpen((isOpen) => {
+      if (isOpen) setSearchQuery("");
+      return !isOpen;
+    });
   };
 
   return (
@@ -1808,35 +1840,102 @@ export function MenuPage() {
           ref={tabBarRef}
           className="fixed md:sticky left-0 right-0 z-40 bg-paper-white/90 backdrop-blur-md border-b border-primary/10 shadow-sm top-16 md:top-[80px]"
         >
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-1 overflow-x-auto">
-            {sections.map(({ id, label, jp }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`flex-shrink-0 flex flex-col items-center gap-0.5 px-3 sm:px-4 py-3 border-b-2 transition-all text-sm font-label-md ${
-                  activeTab === id
-                    ? "border-primary text-primary"
-                    : "border-transparent text-on-surface-variant hover:text-primary hover:border-primary/30"
-                }`}
-              >
-                <span className="text-sm sm:text-base">{locale === "ja" ? jp : label}</span>
-                <span
-                  className="font-caption opacity-60 hidden sm:block"
-                  style={{ fontSize: "10px", fontFamily: "serif" }}
+          <div className="max-w-5xl mx-auto flex items-center gap-2 px-3 sm:px-4 md:px-6 py-1">
+            <div className="min-w-0 flex-1 flex items-center justify-start md:justify-center gap-1 sm:gap-6 md:gap-20 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {sections.map(({ id, label, jp }) => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className={`flex-shrink-0 flex flex-col items-center gap-0.5 px-2.5 sm:px-3 md:px-4 py-2 sm:py-3 border-b-2 transition-all text-[11px] sm:text-sm font-label-md ${
+                    activeTab === id
+                      ? "border-primary text-primary"
+                      : "border-transparent text-on-surface-variant hover:text-primary hover:border-primary/30"
+                  }`}
                 >
-                  {locale === "ja" ? label : jp}
-                </span>
-              </button>
-            ))}
+                  <span className="whitespace-nowrap text-[11px] sm:text-sm md:text-base">{locale === "ja" ? jp : label}</span>
+                  <span
+                    className="font-caption opacity-60 hidden sm:block"
+                    style={{ fontSize: "10px", fontFamily: "serif" }}
+                  >
+                    {locale === "ja" ? label : jp}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={toggleSearch}
+              className="shrink-0 inline-flex items-center justify-center rounded-full border-2 border-primary/30 bg-paper-white w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 text-primary hover:bg-primary/5 transition-colors"
+              aria-label={searchOpen ? "Close search" : "Open search"}
+              type="button"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-primary sm:w-4 sm:h-4"
+              >
+                <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="2" />
+                <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
           </div>
         </div>
 
         {/* mobile spacer to avoid fixed tab overlap on small screens */}
         <div className="md:hidden h-16" />
 
+        {/* ── Search Bar (Conditional) ── */}
+        {searchOpen && (
+          <div className="mt-8 px-6 md:px-margin-desktop">
+            <div className="max-w-xl mx-auto">
+              <div className="relative">
+                <svg
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="2" />
+                  <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder={locale === "ja" ? "メニューを検索..." : "Search menu..."}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
+                  className="w-full pl-14 pr-12 py-3 rounded-2xl border-2 border-primary/20 bg-paper-white shadow-sm font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors"
+                    aria-label="Clear search"
+                    type="button"
+                  >
+                    <span className="material-symbols-outlined" style={{ fontSize: "20px" }}>close</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ── Menu Sections ── */}
         <div className="max-w-5xl mx-auto px-6 md:px-margin-desktop">
-          {sections.map((section) => (
+          {searchQuery.trim() !== "" && filteredSections.length === 0 && (
+            <div className="py-16 text-center">
+              <p className="font-body-lg text-body-lg text-on-surface-variant">
+                {locale === "ja" ? "検索結果がありません" : "No menu items found"}
+              </p>
+            </div>
+          )}
+          {filteredSections.map((section) => (
             <section
               key={section.id}
               id={section.id}
