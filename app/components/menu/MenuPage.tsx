@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { HIDAMARI_PHONE_TEL } from "@/app/lib/site-links";
 import { SiteHeader } from "@/app/components/shared/SiteHeader";
 import { SiteFooter } from "@/app/components/shared/SiteFooter";
 import { useLanguage } from "@/app/components/shared/LanguageProvider";
@@ -1997,13 +1998,13 @@ export function MenuPage() {
               <p className="font-body-md text-body-md opacity-80 leading-relaxed mb-4">
                 {t("menu.privateDiningBody")}
               </p>
-              <Link
-                href="/access"
+              <a
+                href={HIDAMARI_PHONE_TEL}
                 className="inline-flex items-center gap-2 bg-paper-white text-secondary px-5 py-2.5 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all"
               >
                 {t("menu.enquireNow")}
-                <span className="material-symbols-outlined text-base">arrow_forward</span>
-              </Link>
+                <span className="material-symbols-outlined text-base">call</span>
+              </a>
             </div>
 
           </div>
