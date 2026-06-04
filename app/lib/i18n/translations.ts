@@ -8,8 +8,8 @@ export const translations = {
         menu: "Menu",
         access: "Access",
       },
-      bookTable: "Book a Table",
-      book: "Book",
+      bookTable: "Phone Reservations",
+      book: "Call",
       bento: "Bento",
       quickActions: "Quick actions",
       backHome: "Back to Home",
@@ -22,8 +22,9 @@ export const translations = {
       footerTagline:
         "Experience a comforting space where people can relax amidst their busy lives, in the heart of Makati City.",
       copyright: "© 2024 Hidamari Japanese Restaurant. All Rights Reserved.",
-      bookInquire: "Book or inquire: 02-8659-6120",
+      bookInquire: "Call or inquire: 02-8659-6120",
       phone: "Phone",
+      email: "Email",
       address: "Address",
       addressLines: [
         "4th Floor, Penthouse, Creekside Building,",
@@ -44,7 +45,7 @@ export const translations = {
       ],
       footer: {
         bentoOrders: "Bento Orders",
-        membershipBar: "Membership Bar",
+        privateEvents: "Private Dining",
         privacyPolicy: "Privacy Policy",
         termsOfService: "Terms of Service",
         careers: "Careers",
@@ -114,8 +115,8 @@ export const translations = {
       ],
     },
     lunch: {
-      reserve: "Reserve",
-      bookTable: "Book a Table",
+      reserve: "Call Us",
+      bookTable: "Phone Reservations",
       heroImageAlt: "Hidamari Lunch",
       heroTitle: "LUNCH",
       heroTagline: "Experience Tactile Minimalism and Authentic Flavors",
@@ -214,8 +215,8 @@ export const translations = {
       ],
     },
     dinner: {
-      reservations: "Reservations",
-      bookTable: "Book a Table",
+      reservations: "Phone Reservations",
+      bookTable: "Phone Reservations",
       lunchHours: "Lunch Hours",
       eveningBadge: "Evening Experience",
       heroTitle: "Dinner at Hidamari",
@@ -274,9 +275,9 @@ export const translations = {
       privateDining: "Private Dining",
       privateDiningBody:
         "Private rooms available for 8–10 and 16–18 guests. Full restaurant buyout accommodates up to 65. Inquire for custom menus and packages.",
-      enquireNow: "Enquire Now",
+      enquireNow: "Call Us",
       cardsAccepted: "Cards Accepted",
-      reservationsPhone: "Reservations via phone or in-person.",
+      reservationsPhone: "Phone or in-person inquiries only.",
       schedules: {
         lunch: "Weekends & Holidays · 11:30 – 14:00 (L.O.)",
         dinner: "Daily · 17:00 – 24:00 (L.O. 23:00)",
@@ -307,11 +308,23 @@ export const translations = {
       pickUpTime: "Pick-up Time",
       orderNow: "Order Now",
       viewBentoMenu: "View Bento Menu",
-      membershipTitle: "Membership Hidamari BAR",
-      membershipBody:
-        "Our affiliated members-only bar features counter seating and two private karaoke rooms. For reservations and membership details, please contact the restaurant by phone.",
+      promoLabel: "Plan Your Visit",
+      promoTitle: "Private Dining & Events",
+      promoBody:
+        "Celebrate birthdays, team dinners, or intimate gatherings in our warm wood-lined space. Private rooms for 8–18 guests, or full buyout for up to 65. Custom menus available — call us to plan your event.",
+      promoStatSmall: "8–10 guests",
+      promoStatMedium: "16–18 guests",
+      promoStatFull: "Up to 65 guests",
+      promoCtaCall: "Call Us",
+      promoCtaMenu: "Explore Menu",
       contactUs: "Contact Us",
       alt: "Hidamari Restaurant sign on warm wood interior wall with greenery and lights",
+      galleryLabel: "Our Space",
+      galleryTitle: "A Glimpse Inside",
+      galleryBody:
+        "Every corner of Hidamari is designed with intention — warm light, honest materials, and quiet beauty.",
+      galleryPhotoAlt: "Gallery photo",
+      galleryBadge: "Hidamari · 日だまり",
     },
     legal: {
       privacy: {
@@ -332,9 +345,9 @@ export const translations = {
       careers: {
         title: "Careers",
         p1: "Hidamari is always interested in meeting people who share our commitment to warm hospitality and thoughtful Japanese dining. Open roles vary by season; we hire for kitchen, service, and support positions when needed.",
-        p2: "To inquire about current opportunities, please call the restaurant or visit us during operating hours. You may also ask our team about the Membership Hidamari BAR, our affiliated members-only bar with counter seating and private karaoke rooms.",
+        p2: "To inquire about current opportunities, please call the restaurant or visit us during operating hours. You may also ask our team about private dining, events, and full restaurant buyouts.",
         call: "Call 02-8659-6120",
-        membershipInfo: "Membership Bar Info",
+        privateEventsInfo: "Private Dining Info",
       },
     },
   },
@@ -347,8 +360,8 @@ export const translations = {
         menu: "メニュー",
         access: "アクセス",
       },
-      bookTable: "ご予約",
-      book: "予約",
+      bookTable: "お電話でのご予約",
+      book: "電話",
       bento: "弁当",
       quickActions: "クイック操作",
       backHome: "ホームへ戻る",
@@ -361,8 +374,9 @@ export const translations = {
       footerTagline:
         "マカティの中心で、忙しい日常のなかでもほっと一息つける、やさしい空間をお届けします。",
       copyright: "© 2024 ひだまり Japanese Restaurant. All Rights Reserved.",
-      bookInquire: "ご予約・お問い合わせ：02-8659-6120",
+      bookInquire: "お問い合わせ：02-8659-6120",
       phone: "お電話",
+      email: "メール",
       address: "住所",
       addressLines: [
         "クリークサイドビル ペントハウス4階、",
@@ -383,7 +397,7 @@ export const translations = {
       ],
       footer: {
         bentoOrders: "弁当のご注文",
-        membershipBar: "メンバーシップバー",
+        privateEvents: "個室・宴会",
         privacyPolicy: "プライバシーポリシー",
         termsOfService: "利用規約",
         careers: "採用情報",
@@ -450,8 +464,8 @@ export const translations = {
       ],
     },
     lunch: {
-      reserve: "ご予約",
-      bookTable: "ご予約",
+      reserve: "お電話ください",
+      bookTable: "お電話でのご予約",
       heroImageAlt: "ひだまり ランチ",
       heroTitle: "ランチ",
       heroTagline: "素材の味わいと、日本の温かさを感じるランチ",
@@ -549,8 +563,8 @@ export const translations = {
       ],
     },
     dinner: {
-      reservations: "ご予約",
-      bookTable: "ご予約",
+      reservations: "お電話でのご予約",
+      bookTable: "お電話でのご予約",
       lunchHours: "ランチ時間",
       eveningBadge: "夜のひととき",
       heroTitle: "ひだまりのディナー",
@@ -609,9 +623,9 @@ export const translations = {
       privateDining: "個室・貸切",
       privateDiningBody:
         "8〜10名様・16〜18名様の個室をご用意。最大65名様の貸切も可能です。コースメニュー・パッケージはお問い合わせください。",
-      enquireNow: "お問い合わせ",
+      enquireNow: "お電話ください",
       cardsAccepted: "ご利用可能なカード",
-      reservationsPhone: "ご予約はお電話またはご来店にて承ります。",
+      reservationsPhone: "ご予約・お問い合わせはお電話またはご来店にて承ります。",
       schedules: {
         lunch: "土日・祝日 · 11:30〜14:00（L.O.）",
         dinner: "毎日 · 17:00〜24:00（L.O. 23:00）",
@@ -641,11 +655,23 @@ export const translations = {
       pickUpTime: "お受け取り",
       orderNow: "今すぐ注文",
       viewBentoMenu: "弁当メニューを見る",
-      membershipTitle: "Membership ひだまり BAR",
-      membershipBody:
-        "会員制の提携バー。カウンター席とカラオケ個室2室をご用意しています。ご予約・会員についてはお電話にてお問い合わせください。",
+      promoLabel: "ご宴会・貸切",
+      promoTitle: "個室・イベントのご案内",
+      promoBody:
+        "お誕生日、歓送迎会、記念日など、木の温もりあふれる空間でお過ごしください。8〜18名様の個室、最大65名様の貸切も承ります。コースメニューのご相談はお電話にて。",
+      promoStatSmall: "8〜10名様",
+      promoStatMedium: "16〜18名様",
+      promoStatFull: "最大65名様",
+      promoCtaCall: "お電話はこちら",
+      promoCtaMenu: "メニューを見る",
       contactUs: "お問い合わせ",
       alt: "木の壁にひだまりの看板、緑と照明のある店内",
+      galleryLabel: "店内",
+      galleryTitle: "店内の雰囲気",
+      galleryBody:
+        "木の温もり、やわらかな光、静かな佇まい。ひだまりのすべての一角に、心を込めた想いが宿っています。",
+      galleryPhotoAlt: "店内写真",
+      galleryBadge: "ひだまり · Hidamari",
     },
     legal: {
       privacy: {
@@ -666,9 +692,9 @@ export const translations = {
       careers: {
         title: "採用情報",
         p1: "ひだまりでは、温かいおもてなしと丁寧な日本料理への想いを共有できる方との出会いを大切にしています。キッチン・サービス・サポートなど、時期により募集内容が異なります。",
-        p2: "現在の募集状況はお電話または営業時間内のご来店にてお問い合わせください。会員制バー「Membership ひだまり BAR」（カウンター席・カラオケ個室）についてもスタッフがご案内いたします。",
+        p2: "現在の募集状況はお電話または営業時間内のご来店にてお問い合わせください。個室・宴会・貸切についてもスタッフがご案内いたします。",
         call: "お電話：02-8659-6120",
-        membershipInfo: "Membership BAR のご案内",
+        privateEventsInfo: "個室・宴会のご案内",
       },
     },
   },
